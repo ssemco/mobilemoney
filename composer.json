@@ -1,0 +1,48 @@
+{
+    "name": "ssemco/mobilemoney",
+    "description": "A laravel package to collect money through mobile money services like MTN, Airtel and Africel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joseph M. Matembu",
+            "email": "jmatembu@gmail.com",
+            "homepage": "https://github.com/jmatembu"
+        },
+        {
+            "name": "Joseph Ssempala",
+            "email": "ssempala2012@gmail.com",
+            "homepage": "https://github.com/SsemcoCoder"
+        }
+    ],
+    "homepage": "https://github.com/ssemco/mobilemoney",
+    "keywords": ["Laravel", "MTN, Airtel Mobile Money"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ssemco\\MobileMoney\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ssemco\\MobileMoney\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ssemco\\MobileMoney\\MobileMoneyServiceProvider"
+            ],
+            "aliases": {
+                "mobilemoney": "Ssemco\\MobileMoney\\Facades\\MobileMoney"
+            }
+        }
+    }
+}
