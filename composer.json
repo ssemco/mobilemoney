@@ -41,7 +41,7 @@
                 "Ssemco\\MobileMoney\\MobileMoneyServiceProvider"
             ],
             "aliases": {
-                "mobilemoney": "Ssemco\\MobileMoney\\Facades\\MobileMoney"
+                "MobileMoney": "Ssemco\\MobileMoney\\Facades\\MobileMoney"
             }
         }
     }

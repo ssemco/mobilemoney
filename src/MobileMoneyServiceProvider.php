@@ -1,8 +1,9 @@
 <?php
 
-namespace ssemco\mobilemoney;
+namespace Ssemco\MobileMoney;
 
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\Client;
 
 class MobileMoneyServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,7 @@ class MobileMoneyServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('mobilemoney', function ($app) {
-            return new mobilemoney;
+            return new MobileMoney(new Client);
         });
     }
 
@@ -50,7 +51,7 @@ class MobileMoneyServiceProvider extends ServiceProvider
     {
         return ['mobilemoney'];
     }
-    
+
     /**
      * Console-specific booting.
      *

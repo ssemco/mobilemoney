@@ -1,6 +1,6 @@
 <?php
 
-namespace ssemco\mobilemoney\Facades;
+namespace Ssemco\MobileMoney\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
