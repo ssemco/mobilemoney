@@ -56,17 +56,24 @@ class MobileMoney
 
         $this->referenceId = (string) Str::uuid();
         $this->accessToken = $this->accessToken();
+        $callbackUrl = config('mobilemoney.mtn.callback_url');
+        $headers = [
+            'Authorization' => 'Bearer ' . $this->accessToken,
+            'X-Reference-Id' => $this->referenceId,
+            'X-Target-Environment' => 'sandbox',
+            'Ocp-Apim-Subscription-Key' => config('mobilemoney.mtn.primary_key'),
+        ];
+
+        if (! empty($callbackUrl)) {
+            $headers['X-Callback-Url'] = $callbackUrl;
+        }
         // Request the payment
-        $response = $this->client->post('https://ericssonbasicapi2.azure-api.net/collection/v1_0/requesttopay',
+        $response = $this->client->post(
+            'https://ericssonbasicapi2.azure-api.net/collection/v1_0/requesttopay',
             [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->accessToken,
-                    'X-Reference-Id' => $this->referenceId,
-                    'X-Target-Environment' => 'sandbox',
-                    'Ocp-Apim-Subscription-Key' => config('mobilemoney.mtn.primary_key'),
-                ],
+                'headers' => $headers,
                 'json' => [
-                    'amount' => $options['amount'] ,
+                    'amount' => $options['amount'],
                     'currency' => $options['currency'],
                     'externalId' => $options['externalId'],
                     'payer' => [
@@ -83,6 +90,7 @@ class MobileMoney
             'reference_id' => $this->referenceId,
             'access_token' => $this->accessToken
         ]);
+
     }
 
     public function requestStatus(string $referenceId)
